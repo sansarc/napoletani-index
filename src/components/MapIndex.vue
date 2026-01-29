@@ -9,8 +9,9 @@ let map = null;
 
 // UI state
 const isOverlayOpen = ref(true);
-const isTop3Open = ref(true);
-const isInfoModalOpen = ref(false); // <--- NUOVO STATO PER IL MODALE
+const isTop3Open = ref(false);
+const isInfoModalOpen = ref(false);
+const isNotificationVisible = ref(true);
 
 const top3Destinations = computed(() => {
   return [...rawDestinations]
@@ -48,7 +49,6 @@ Object.keys(countryData).forEach(code => {
 });
 
 function getColor(d) {
-    // NO DATA: Grigio "Slate" deciso (#cbd5e1)
     if (d === null || d === undefined) return '#cbd5e1'; 
 
     return d >= 90  ? '#800026' : 
@@ -141,6 +141,13 @@ onMounted(async () => {
   
   L.control.zoom({ position: 'bottomright' }).addTo(map);
 
+  setTimeout(() => {
+    hideNotification();
+  }, 5000);
+
+  map.on('click', hideNotification);
+  map.on('dragstart', hideNotification);
+
   try {
     const response = await fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson');
     const geoJsonData = await response.json();
@@ -154,11 +161,23 @@ onMounted(async () => {
     console.error("Errore caricamento mappa:", error);
   }
 });
+
+function hideNotification() {
+  isNotificationVisible.value = false;
+}
 </script>
 
 <template>
   <div class="map-wrapper">
     <div ref="mapContainer" class="map-container"></div>
+
+    <!-- Notification Toast -->
+    <Transition name="notification">
+      <div v-if="isNotificationVisible" class="notification-toast" @click="hideNotification">
+        <span class="notification-icon">👆</span>
+        <span class="notification-text">Tocca sui paesi colorati per i dettagli.</span>
+      </div>
+    </Transition>
 
     <button 
       class="info-btn" 
@@ -298,8 +317,66 @@ onMounted(async () => {
 
 <style scoped>
     /* =========================================
-    1. MODAL STYLES (INFO & USE CASES)
+    NOTIFICATION TOAST
     ========================================= */
+
+.notification-toast {
+  position: absolute;
+  bottom: auto;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  padding: 10px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  max-width: calc(100% - 40px);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.notification-toast:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.notification-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.notification-text {
+  line-height: 1.4;
+}
+
+/* Transition animations */
+.notification-enter-active,
+.notification-leave-active {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notification-enter-from {
+  opacity: 0;
+  transform: translateX(-50%) translateY(calc(-50% + 20px));
+}
+
+.notification-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(calc(-50% + 10px));
+}
+
+/* =========================================
+   1. MODAL STYLES (INFO & USE CASES)
+   ========================================= */
 
 .info-btn {
   position: absolute;
@@ -344,7 +421,7 @@ onMounted(async () => {
 .modal-content {
   background: white;
   width: 100%;
-  max-width: 550px; /* Aumentato per Desktop */
+  max-width: 550px; 
   border-radius: 20px;
   box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.35);
   overflow: hidden;
