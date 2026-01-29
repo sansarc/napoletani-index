@@ -229,14 +229,14 @@ onMounted(async () => {
           </div>
 
           <div class="modal-attribution">
-            made by <a href="https://example.com" target="_blank" rel="noopener">sansarc</a>
+            made by <a href="https://github.com/sansarc/napoletani-index" target="_blank" rel="noopener">sansarc</a>
           </div>
         </div>
       </div>
     </div>
 
     <div class="attribution">
-      made by <a href="https://example.com" target="_blank" rel="noopener">sansarc</a>
+      made by <a href="https://github.com/sansarc/napoletani-index" target="_blank" rel="noopener">sansarc</a>
     </div>
 
     <button v-if="!isOverlayOpen" class="overlay-toggle" @click="isOverlayOpen = true">
