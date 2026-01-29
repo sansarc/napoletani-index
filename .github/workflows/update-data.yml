@@ -1,0 +1,50 @@
+name: Update Napoletani Index 
+
+on:
+  # execute every Monday at 09:00 UTC
+  schedule:
+    - cron: '0 9 * * 1'
+  
+  # allow manual execution from the "Actions" tab for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install serpapi python-dotenv
+
+    - name: Run Python Script
+      env:
+        API_KEY: ${{ secrets.SERPAPI_KEY }}
+      run: |
+        python scripts/main.py
+
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name 'Napoletani Bot'
+        git config --global user.email 'bot@napoletani-index.com'
+        
+        # Check if there are changes to the JSON file
+        if [[ -n $(git status -s src/assets/real_data.json) ]]; then
+          echo "Data changed, committing..."
+          git add src/assets/real_data.json
+          git commit -m "Auto-update: new Hype Index data"
+          git push
+        else
+          echo "No changes in data. No commit needed."
+        fi
