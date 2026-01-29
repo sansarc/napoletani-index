@@ -1,0 +1,494 @@
+[
+  {
+    "name": "Londra",
+    "country_code": "GBR",
+    "country_name": "Regno Unito",
+    "index": 43.9
+  },
+  {
+    "name": "Parigi",
+    "country_code": "FRA",
+    "country_name": "Francia",
+    "index": 82.7
+  },
+  {
+    "name": "Barcellona",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 53.1
+  },
+  {
+    "name": "New York",
+    "country_code": "USA",
+    "country_name": "Stati Uniti",
+    "index": 35.2
+  },
+  {
+    "name": "Dubai",
+    "country_code": "ARE",
+    "country_name": "Emirati Arabi Uniti",
+    "index": 15.6
+  },
+  {
+    "name": "Sharm",
+    "country_code": "EGY",
+    "country_name": "Egitto",
+    "index": 43.4
+  },
+  {
+    "name": "Mykonos",
+    "country_code": "GRC",
+    "country_name": "Grecia",
+    "index": 8.6
+  },
+  {
+    "name": "Tokyo",
+    "country_code": "JPN",
+    "country_name": "Giappone",
+    "index": 5.3
+  },
+  {
+    "name": "Corfu",
+    "country_code": "GRC",
+    "country_name": "Grecia",
+    "index": 5.6
+  },
+  {
+    "name": "Ibiza",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 24.0
+  },
+  {
+    "name": "Santorini",
+    "country_code": "GRC",
+    "country_name": "Grecia",
+    "index": 9.8
+  },
+  {
+    "name": "Malta",
+    "country_code": "MLT",
+    "country_name": "Malta",
+    "index": 20.4
+  },
+  {
+    "name": "Tenerife",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 26.9
+  },
+  {
+    "name": "Istanbul",
+    "country_code": "TUR",
+    "country_name": "Turchia",
+    "index": 10.4
+  },
+  {
+    "name": "Maldive",
+    "country_code": "MDV",
+    "country_name": "Maldive",
+    "index": 4.7
+  },
+  {
+    "name": "Berlino",
+    "country_code": "DEU",
+    "country_name": "Germania",
+    "index": 3.8
+  },
+  {
+    "name": "Copenaghen",
+    "country_code": "DNK",
+    "country_name": "Danimarca",
+    "index": 7.7
+  },
+  {
+    "name": "Stoccolma",
+    "country_code": "SWE",
+    "country_name": "Svezia",
+    "index": 0.0
+  },
+  {
+    "name": "Praga",
+    "country_code": "CZE",
+    "country_name": "Repubblica Ceca",
+    "index": 17.9
+  },
+  {
+    "name": "Amsterdam",
+    "country_code": "NLD",
+    "country_name": "Paesi Bassi",
+    "index": 72.8
+  },
+  {
+    "name": "Vienna",
+    "country_code": "AUT",
+    "country_name": "Austria",
+    "index": 20.7
+  },
+  {
+    "name": "Lisbona",
+    "country_code": "PRT",
+    "country_name": "Portogallo",
+    "index": 8.0
+  },
+  {
+    "name": "Valencia",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 9.8
+  },
+  {
+    "name": "Madrid",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 43.7
+  },
+  {
+    "name": "Dublino",
+    "country_code": "IRL",
+    "country_name": "Irlanda",
+    "index": 3.9
+  },
+  {
+    "name": "Bruxelles",
+    "country_code": "BEL",
+    "country_name": "Belgio",
+    "index": 3.8
+  },
+  {
+    "name": "Marrakech",
+    "country_code": "MAR",
+    "country_name": "Marocco",
+    "index": 10.0
+  },
+  {
+    "name": "Budapest",
+    "country_code": "HUN",
+    "country_name": "Ungheria",
+    "index": 41.9
+  },
+  {
+    "name": "Bucarest",
+    "country_code": "ROU",
+    "country_name": "Romania",
+    "index": 14.5
+  },
+  {
+    "name": "Varsavia",
+    "country_code": "POL",
+    "country_name": "Polonia",
+    "index": 4.2
+  },
+  {
+    "name": "Cracovia",
+    "country_code": "POL",
+    "country_name": "Polonia",
+    "index": 4.7
+  },
+  {
+    "name": "Marsiglia",
+    "country_code": "FRA",
+    "country_name": "Francia",
+    "index": 0.4
+  },
+  {
+    "name": "Edimburgo",
+    "country_code": "GBR",
+    "country_name": "Regno Unito",
+    "index": 3.2
+  },
+  {
+    "name": "California",
+    "country_code": "USA",
+    "country_name": "Stati Uniti",
+    "index": 4.2
+  },
+  {
+    "name": "Miami",
+    "country_code": "USA",
+    "country_name": "Stati Uniti",
+    "index": 16.1
+  },
+  {
+    "name": "Helsinki",
+    "country_code": "FIN",
+    "country_name": "Finlandia",
+    "index": 0.2
+  },
+  {
+    "name": "Oslo",
+    "country_code": "NOR",
+    "country_name": "Norvegia",
+    "index": 8.5
+  },
+  {
+    "name": "Amburgo",
+    "country_code": "DEU",
+    "country_name": "Germania",
+    "index": 0.0
+  },
+  {
+    "name": "Monaco di Baviera",
+    "country_code": "DEU",
+    "country_name": "Germania",
+    "index": 1.0
+  },
+  {
+    "name": "Bangkok",
+    "country_code": "THA",
+    "country_name": "Thailandia",
+    "index": 3.4
+  },
+  {
+    "name": "Los Angeles",
+    "country_code": "USA",
+    "country_name": "Stati Uniti",
+    "index": 2.0
+  },
+  {
+    "name": "San Francisco",
+    "country_code": "USA",
+    "country_name": "Stati Uniti",
+    "index": 0.5
+  },
+  {
+    "name": "L'Avana",
+    "country_code": "CUB",
+    "country_name": "Cuba",
+    "index": 0.0
+  },
+  {
+    "name": "Seoul",
+    "country_code": "KOR",
+    "country_name": "Corea del Sud",
+    "index": 0.0
+  },
+  {
+    "name": "Kyoto",
+    "country_code": "JPN",
+    "country_name": "Giappone",
+    "index": 6.4
+  },
+  {
+    "name": "Osaka",
+    "country_code": "JPN",
+    "country_name": "Giappone",
+    "index": 1.5
+  },
+  {
+    "name": "Sydney",
+    "country_code": "AUS",
+    "country_name": "Australia",
+    "index": 0.9
+  },
+  {
+    "name": "Melbourne",
+    "country_code": "AUS",
+    "country_name": "Australia",
+    "index": 0.0
+  },
+  {
+    "name": "Reykjavik",
+    "country_code": "ISL",
+    "country_name": "Islanda",
+    "index": 3.0
+  },
+  {
+    "name": "Siviglia",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 11.9
+  },
+  {
+    "name": "Zagabria",
+    "country_code": "HRV",
+    "country_name": "Croazia",
+    "index": 2.8
+  },
+  {
+    "name": "Cairo",
+    "country_code": "EGY",
+    "country_name": "Egitto",
+    "index": 3.4
+  },
+  {
+    "name": "Atene",
+    "country_code": "GRC",
+    "country_name": "Grecia",
+    "index": 5.3
+  },
+  {
+    "name": "Sofia",
+    "country_code": "BGR",
+    "country_name": "Bulgaria",
+    "index": 7.5
+  },
+  {
+    "name": "Belgrado",
+    "country_code": "SRB",
+    "country_name": "Serbia",
+    "index": 0.0
+  },
+  {
+    "name": "Lubiana",
+    "country_code": "SVN",
+    "country_name": "Slovenia",
+    "index": 0.2
+  },
+  {
+    "name": "Bratislava",
+    "country_code": "SVK",
+    "country_name": "Slovacchia",
+    "index": 2.7
+  },
+  {
+    "name": "Tallinn",
+    "country_code": "EST",
+    "country_name": "Estonia",
+    "index": 3.3
+  },
+  {
+    "name": "Riga",
+    "country_code": "LVA",
+    "country_name": "Lettonia",
+    "index": 0.2
+  },
+  {
+    "name": "Vilnius",
+    "country_code": "LTU",
+    "country_name": "Lituania",
+    "index": 3.0
+  },
+  {
+    "name": "Lussemburgo",
+    "country_code": "LUX",
+    "country_name": "Lussemburgo",
+    "index": 0.0
+  },
+  {
+    "name": "San Marino",
+    "country_code": "SMR",
+    "country_name": "San Marino",
+    "index": 0.0
+  },
+  {
+    "name": "Berna",
+    "country_code": "CHE",
+    "country_name": "Svizzera",
+    "index": 0.0
+  },
+  {
+    "name": "Zurigo",
+    "country_code": "CHE",
+    "country_name": "Svizzera",
+    "index": 4.3
+  },
+  {
+    "name": "Ginevra",
+    "country_code": "CHE",
+    "country_name": "Svizzera",
+    "index": 5.5
+  },
+  {
+    "name": "Nizza",
+    "country_code": "FRA",
+    "country_name": "Francia",
+    "index": 4.7
+  },
+  {
+    "name": "Cannes",
+    "country_code": "FRA",
+    "country_name": "Francia",
+    "index": 3.1
+  },
+  {
+    "name": "Bordeaux",
+    "country_code": "FRA",
+    "country_name": "Francia",
+    "index": 4.0
+  },
+  {
+    "name": "Lione",
+    "country_code": "FRA",
+    "country_name": "Francia",
+    "index": 0.2
+  },
+  {
+    "name": "Porto",
+    "country_code": "PRT",
+    "country_name": "Portogallo",
+    "index": 29.0
+  },
+  {
+    "name": "Faro",
+    "country_code": "PRT",
+    "country_name": "Portogallo",
+    "index": 2.0
+  },
+  {
+    "name": "Bilbao",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 3.4
+  },
+  {
+    "name": "Palma di Maiorca",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 6.0
+  },
+  {
+    "name": "Alicante",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 6.9
+  },
+  {
+    "name": "Malaga",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 6.1
+  },
+  {
+    "name": "Gran Canaria",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 2.3
+  },
+  {
+    "name": "Fuerteventura",
+    "country_code": "ESP",
+    "country_name": "Spagna",
+    "index": 7.9
+  },
+  {
+    "name": "Creta",
+    "country_code": "GRC",
+    "country_name": "Grecia",
+    "index": 6.4
+  },
+  {
+    "name": "Rodi",
+    "country_code": "GRC",
+    "country_name": "Grecia",
+    "index": 7.4
+  },
+  {
+    "name": "Spalato",
+    "country_code": "HRV",
+    "country_name": "Croazia",
+    "index": 0.0
+  },
+  {
+    "name": "Dubrovnik",
+    "country_code": "HRV",
+    "country_name": "Croazia",
+    "index": 0.2
+  },
+  {
+    "name": "Sarajevo",
+    "country_code": "BIH",
+    "country_name": "Bosnia ed Erzegovina",
+    "index": 3.3
+  }
+]
