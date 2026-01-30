@@ -174,7 +174,7 @@ function hideNotification() {
     <!-- Notification Toast -->
     <Transition name="notification">
       <div v-if="isNotificationVisible" class="notification-toast" @click="hideNotification">
-        <span class="notification-icon">👆</span>
+        <span class="notification-icon">🔎</span>
         <span class="notification-text">Tocca sui paesi colorati per i dettagli.</span>
       </div>
     </Transition>
@@ -184,7 +184,7 @@ function hideNotification() {
       @click="isInfoModalOpen = true"
       aria-label="Informazioni e Metodologia"
     >
-      ?
+      <span class="info-btn-text">Come funziona?</span>
     </button>
 
     <div v-if="isInfoModalOpen" class="modal-backdrop" @click.self="isInfoModalOpen = false">
@@ -196,8 +196,8 @@ function hideNotification() {
         
         <div class="modal-body">
           <p class="modal-intro">
-            Il <strong>Napoletani Index</strong> traccia l'interesse dei campani verso le mete estere usando i dati di ricerca Google. 
-            Ecco come usare questa mappa a tuo vantaggio:
+            Il <strong>Napoletani Index</strong> traccia l'interesse dei campani verso le mete estere usando i dati di ricerca Google.
+            <strong>Non indica dove vivono</strong>, ma le mete che vorrebbero invadere.
           </p>
           
           <div class="modal-use-cases">
@@ -242,7 +242,7 @@ function hideNotification() {
               <li><strong>Normalizzazione:</strong> Calibrato su "Milano" come costante nascosta.</li>
 
               <li><strong>Confrontabilità:</strong> Poiché Google non permette di confrontare 50 città insieme, sono analizzate a gruppi di 4 usando sempre "Milano" come metro di paragone comune (anchor) per allineare tutti i punteggi sulla stessa scala.</li>
-              <li><strong>Tipo dato:</strong> serie temporale; per ogni query viene calcolata la <em>media</em> dei punti nel timeframe (media degli <code>extracted_value</code>).</li>
+              <li><strong>Tipo dato:</strong> Serie temporale; per ogni query viene calcolata la <em>media</em> dei punti nel timeframe (media degli <code>extracted_value</code>).</li>
               <li><strong>Formula indice (per città):</strong> <code>index = (mean(query) / mean(anchor)) * visual_scale</code> → poi arrotondato a 1 decimale.</li>
               <li><strong>Aggregazione per nazione (mappa):</strong> <code>score_country = top_city + 0.15 * sum(altre_città)</code> (poi arrotondato).</li>
               <li><strong>Limite interpretazione:</strong> Trends è un proxy di interesse (ricerche), non prenotazioni/arrivi reali; confronti tra batch diversi dipendono dall'ancora.</li>
@@ -270,12 +270,15 @@ function hideNotification() {
 
     <div v-if="isOverlayOpen" class="overlay">
       <div class="overlay-header">
-        <div class="overlay-title"><h1>Napoletani Index</h1></div>
+        <div class="overlay-title">
+          <h1>Napoletani Index</h1>
+          <span class="overlay-subtitle">Dove sognano di andare in vacanza</span>
+        </div>
         <button class="overlay-close" @click="isOverlayOpen = false">×</button>
       </div>
 
       <div class="legend">
-        <div class="legend-title">Indice Hype</div>
+        <div class="legend-title">Hype</div>
         <div class="legend-gradient-row">
           <span class="legend-axis-label">Deserto</span>
           <div class="legend-gradient"></div>
@@ -315,7 +318,7 @@ function hideNotification() {
           Aggiornato: {{ lastUpdated }}
         </div>
       </div>
-      <button v-else class="top3-toggle" @click="isTop3Open = true">Top 3 🏆</button>
+      <button v-else class="top3-toggle" @click="isTop3Open = true">Top 3</button>
 
       <div v-if="lastUpdated" class="legend-updated legend-updated--bottom">
         Aggiornato: {{ lastUpdated }}
@@ -397,30 +400,31 @@ function hideNotification() {
   top: 25px;
   left: 25px;
   z-index: 1001;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: white;
-  border: 1px solid rgba(0,0,0,0.1);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  font-weight: 800;
-  font-family: monospace;
-  font-size: 1.6rem;
-  color: #084594;
-  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #084594;
+  border: none;
+  box-shadow: 0 4px 15px rgba(8, 69, 148, 0.3);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: pulse-attention 3s infinite;
+  animation: pulse-attention 2.5s infinite;
 }
 
 .info-btn:hover {
-  transform: scale(1.1) rotate(10deg);
-  background: #f0f9ff;
-  color: #000;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+  background: #0a5bc4;
+  box-shadow: 0 6px 20px rgba(8, 69, 148, 0.4);
   animation: none;
+}
+
+.info-btn-text {
+  white-space: nowrap;
 }
 
 .modal-backdrop {
@@ -657,7 +661,8 @@ function hideNotification() {
   backdrop-filter: blur(10px);
 }
 .overlay-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.overlay-title h1 { margin: 0 0 4px 0; font-size: 1.4rem; color: #1e293b; letter-spacing: -0.5px; }
+.overlay-title h1 { margin: 0 0 2px 0; font-size: 1.4rem; color: #1e293b; letter-spacing: -0.5px; }
+.overlay-subtitle { font-size: 0.75rem; color: #64748b; font-weight: 500; display: block; }
 .overlay-close { flex: 0 0 auto; border: 0; background: transparent; font-size: 22px; line-height: 1; padding: 0 4px; cursor: pointer; color: #64748b; }
 
 .overlay-toggle { 
@@ -687,11 +692,12 @@ function hideNotification() {
 
 .attribution { 
   position: absolute; left: 25px; bottom: 25px; z-index: 1002; 
-  font-size: 12px; color: #111827; 
-  background: rgba(255, 255, 255, 0.9); 
+  font-size: 16px; color: #111827; 
+  background: rgba(255, 255, 255, 0.95); 
   border: 1px solid rgba(0,0,0,0.1); 
-  border-radius: 999px; padding: 8px 16px; 
+  border-radius: 999px; padding: 10px 18px; 
   backdrop-filter: blur(4px); font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 .attribution a { color: #084594; font-weight: 700; text-decoration: none; }
 .attribution a:hover { text-decoration: underline; }
@@ -777,9 +783,22 @@ function hideNotification() {
 
   /* --- FIX MAP AND MOBILE OVERLAY --- */
   .overlay { top: 10px; right: 10px; padding: 12px; width: 200px; }
-  .info-btn { top: 10px; left: 10px; width: 44px; height: 44px; font-size: 1.2rem; }
+  .info-btn { 
+    top: 10px; 
+    left: 10px; 
+    padding: 8px 12px; 
+    font-size: 0.8rem; 
+    gap: 6px;
+  }
   .overlay-toggle { top: 10px; right: 10px; padding: 6px 12px; font-size: 0.8rem; }
-  .attribution { left: 10px; bottom: 10px; font-size: 10px; padding: 4px 8px; }
+  
+  .attribution { 
+    left: 10px;
+    right: auto; 
+    bottom: 120px; 
+    font-size: 12px; 
+    padding: 6px 12px;
+  }
 
   /* hover reset on mobile (avoids stickiness) */
   .use-case:hover, .top3-item:hover { transform: none; box-shadow: none; background: #f9fafb; border-color: #e5e7eb; }
