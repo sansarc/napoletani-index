@@ -204,15 +204,15 @@ function hideNotification() {
             <div class="use-case">
               <span class="uc-icon">🤝</span>
               <div class="uc-text">
-                <strong>Cerchi compagnia?</strong>
-                <p>Punta alle zone <span class="c-red">Rosse</span>. Probabilità del 99% di trovare un parcheggiatore abusivo in aeroporto.</p>
+                <strong>Vuoi fare a <em>questione</em>?</strong>
+                <p>Punta alle zone <span class="c-red">Rosse</span>. Ci sarà un parcheggiatore abusivo in aeroporto.</p>
               </div>
             </div>
             <div class="use-case">
               <span class="uc-icon">🤫</span>
               <div class="uc-text">
-                <strong>Vuoi evitare i compaesani?</strong>
-                <p>Punta alle zone <span class="c-white">Bianche</span> o <span class="c-yellow">Gialline</span>. Ideale per fingere di essere norvegese ed evitare quell'antropologia del caos che i locali chiamano 'calore' e il resto del mondo 'reato di inquinamento acustico'.</p>
+                <strong>Vuoi evitare?</strong>
+                <p>Punta alle zone <span class="c-white">Bianche</span> o <span class="c-yellow">Gialle</span>. Ideale per fingere di essere norvegese ed evitare quell'antropologia del caos descritta come 'calore' che il resto del mondo chiama 'reato di inquinamento acustico'.</p>
               </div>
             </div>
           </div>
@@ -221,35 +221,41 @@ function hideNotification() {
 
           <h3>La Scienza dietro l'Hype 🧪</h3>
           <p class="modal-text-sm">
-            Come viene colorata un'intera nazione? Uso la logica del <strong>"Campione + Bonus"</strong>:
+            Come viene calcolato lo score (ed il colore) di un'intera nazione? Viene utilizzata la logica del <strong>"Più Ricercato + Bonus"</strong>:
           </p>
           <ul class="tech-list">
             <li>
-              <strong>Il più ricercato comanda:</strong> Il colore della nazione è dettato dalla città più cercata (es. Amsterdam per l'Olanda).
+              <strong>Il più ricercato:</strong> Lo score della nazione è dettato maggiormente dalla città più cercata (es. Amsterdam per l'Olanda).
             </li>
             <li>
-              <strong>Il bonus volume:</strong> Aggiungiamo un pizzico (15%) del volume delle altre città. Così la Spagna (che ha tante mete come Ibiza, Madrid, Barcellona) ottiene il rispetto che merita senza "truccare" i numeri.
+              <strong>Il bonus volume:</strong> Viene aggiunto un pizzico (15%) del volume delle altre città. Così la Spagna (che ha tante mete come Ibiza, Madrid, Barcellona) ottiene uno score "spalmato" senza "truccare" i numeri.
             </li>
           </ul>
 
           <details class="tech-details">
-            <summary>Dettagli per Nerd 🤓</summary>
+            <summary>Dettagli per Nerd 🤓☝️</summary>
             <ul>
               <li><strong>Fonte:</strong> Google Trends (API)</li>
               <li><strong>Query:</strong> "Voli [Città]" + "Hotel [Città]"</li>
               <li><strong>Geo:</strong> Campania (IT-72)</li>
               <li><strong>Timeframe:</strong> Ultimi 3 mesi (Rolling)</li>
               <li><strong>Normalizzazione:</strong> Calibrato su "Milano" come costante nascosta.</li>
+
+              <li><strong>Confrontabilità:</strong> Poiché Google non permette di confrontare 50 città insieme, sono analizzate a gruppi di 4 usando sempre "Milano" come metro di paragone comune (anchor) per allineare tutti i punteggi sulla stessa scala.</li>
+              <li><strong>Tipo dato:</strong> serie temporale; per ogni query viene calcolata la <em>media</em> dei punti nel timeframe (media degli <code>extracted_value</code>).</li>
+              <li><strong>Formula indice (per città):</strong> <code>index = (mean(query) / mean(anchor)) * visual_scale</code> → poi arrotondato a 1 decimale.</li>
+              <li><strong>Aggregazione per nazione (mappa):</strong> <code>score_country = top_city + 0.15 * sum(altre_città)</code> (poi arrotondato).</li>
+              <li><strong>Limite interpretazione:</strong> Trends è un proxy di interesse (ricerche), non prenotazioni/arrivi reali; confronti tra batch diversi dipendono dall'ancora.</li>
             </ul>
           </details>
 
           <div class="modal-warning">
             ⚠️ <strong>Nota:</strong> L'indice misura il <em>desiderio</em> (ricerche), non la presenza fisica futura. Se vedi le Maldive rosse, stanno tutti sognando.
           </div>
-
-          <div class="modal-attribution">
-            made by <a href="https://github.com/sansarc/napoletani-index" target="_blank" rel="noopener">sansarc</a>
-          </div>
+        </div>
+        
+        <div class="modal-attribution">
+          made by <a href="https://github.com/sansarc/napoletani-index" target="_blank" rel="noopener">sansarc</a>
         </div>
       </div>
     </div>
@@ -305,6 +311,9 @@ function hideNotification() {
             <span class="top3-score">{{ d.index }}</span>
           </div>
         </div>
+        <div v-if="lastUpdated" class="legend-updated" style="margin-top: 8px; text-align: right;">
+          Aggiornato: {{ lastUpdated }}
+        </div>
       </div>
       <button v-else class="top3-toggle" @click="isTop3Open = true">Top 3 🏆</button>
 
@@ -358,7 +367,6 @@ function hideNotification() {
   line-height: 1.4;
 }
 
-/* Transition animations */
 .notification-enter-active,
 .notification-leave-active {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -377,6 +385,12 @@ function hideNotification() {
 /* =========================================
    1. MODAL STYLES (INFO & USE CASES)
    ========================================= */
+
+@keyframes pulse-attention {
+  0% { box-shadow: 0 0 0 0 rgba(8, 69, 148, 0.4); transform: scale(1); }
+  50% { box-shadow: 0 0 0 10px rgba(8, 69, 148, 0); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(8, 69, 148, 0); transform: scale(1); }
+}
 
 .info-btn {
   position: absolute;
@@ -398,6 +412,7 @@ function hideNotification() {
   align-items: center;
   justify-content: center;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulse-attention 3s infinite;
 }
 
 .info-btn:hover {
@@ -405,6 +420,7 @@ function hideNotification() {
   background: #f0f9ff;
   color: #000;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  animation: none;
 }
 
 .modal-backdrop {
@@ -472,11 +488,12 @@ function hideNotification() {
   color: #4b5563;
   line-height: 1.6;
   overflow-y: auto;
-  font-size: 1.05rem; 
+  font-size: 1.05rem;
+  flex: 1; 
 }
 
 .modal-intro {
-  margin-top: 0;
+  margin-top: -10px;
   margin-bottom: 24px;
 }
 
@@ -581,6 +598,18 @@ function hideNotification() {
 }
 .tech-details li { margin-bottom: 6px; }
 
+.tech-details code {
+  font-size: 0.88em;              
+  font-family: monospace;
+  background: #e2e8f0;            
+  color: #0f172a;
+  padding: 0.12em 0.38em;
+  border-radius: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  white-space: normal;            
+  word-break: break-word;
+}
+
 .modal-warning {
   background: #fffbeb;
   padding: 16px;
@@ -592,12 +621,13 @@ function hideNotification() {
 }
 
 .modal-attribution {
-  margin-top: 14px;
-  padding-top: 12px;
+  padding: 16px;
   border-top: 1px solid #f1f5f9;
   text-align: center;
   font-size: 0.95rem;
   color: #94a3b8;
+  background: white;
+  flex-shrink: 0;
 }
 
 .modal-attribution a {
