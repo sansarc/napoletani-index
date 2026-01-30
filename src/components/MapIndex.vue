@@ -3,6 +3,11 @@ import { onMounted, ref, computed } from 'vue';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import rawDestinations from '../assets/data.json';
+import { useLanguage } from '../composables/useLanguage';
+import { useGeo } from '../composables/useGeo';
+
+const { t, currentLang, toggleLang } = useLanguage();
+const { countryName, cityName } = useGeo(currentLang);
 
 const mapContainer = ref(null);
 let map = null;
@@ -29,7 +34,7 @@ const countryData = {};
 rawDestinations.forEach(dest => {
   const code = dest.country_code; 
   if (!countryData[code]) 
-    countryData[code] = { name: dest.country_name, totalIndex: 0, locations: [] };
+    countryData[code] = { name: countryName(code), totalIndex: 0, locations: [] };
   
   countryData[code].locations.push(dest);
 }); 
@@ -90,7 +95,7 @@ function onEachFeature(feature, layer) {
                 ${myData.name}
                 </h3>
                 <div style="background:#f1f5f9; padding:8px; border-radius:6px; margin-bottom:12px;">
-                <span style="font-size:0.85rem; color:#64748b; display:block">Indice Nazionale</span>
+                <span style="font-size:0.85rem; color:#64748b; display:block">${t.value.popup.nationalIndex}</span>
                 <strong style="font-size:1.4rem; color:#0f172a">${myData.totalIndex}</strong>
                 </div>
                 <div style="text-align:left; max-height:150px; overflow-y:auto;">
@@ -103,7 +108,7 @@ function onEachFeature(feature, layer) {
                 
                 popupContent += `
                 <div style="display:flex; justify-content:space-between; border-bottom:1px solid #f0f0f0; padding:4px 0; font-size:0.9rem;">
-                    <span style="${style}">${loc.name}</span>
+                    <span style="${style}">${cityName(loc.name)}</span>
                     <span style="background:#e2e8f0; padding:0 6px; border-radius:4px; font-size:0.8rem">${loc.index}</span>
                 </div>`;
             });
@@ -114,8 +119,6 @@ function onEachFeature(feature, layer) {
                 .setLatLng(e.latlng)
                 .setContent(popupContent)
                 .openOn(map);
-
-            this.setStyle({ weight: 2, color: '#6b7280' });
         });
 
         layer.on('mouseover', function() {
@@ -173,159 +176,215 @@ function hideNotification() {
 
     <!-- Notification Toast -->
     <Transition name="notification">
-      <div v-if="isNotificationVisible" class="notification-toast" @click="hideNotification">
-        <span class="notification-icon">🔎</span>
-        <span class="notification-text">Tocca sui paesi colorati per i dettagli.</span>
+      <div
+        v-if="isNotificationVisible"
+        class="notification-toast"
+        @click="hideNotification"
+      >
+        <span class="notification-icon">{{ t.notification.icon }}</span>
+        <span class="notification-text">
+          {{ t.notification.text }}
+        </span>
       </div>
     </Transition>
 
-    <button 
-      class="info-btn" 
+    <!-- Language toggle -->
+    <button class="lang-btn" @click="toggleLang">
+      {{ currentLang === 'it' ? '🇺🇸' : '🇮🇹' }}
+    </button>
+
+    <!-- Info button -->
+    <button
+      class="info-btn"
       @click="isInfoModalOpen = true"
       aria-label="Informazioni e Metodologia"
     >
-      <span class="info-btn-text">Come funziona?</span>
+      <span class="info-btn-text">{{ t.infoBtn }}</span>
     </button>
 
-    <div v-if="isInfoModalOpen" class="modal-backdrop" @click.self="isInfoModalOpen = false">
+    <!-- Modal -->
+    <div
+      v-if="isInfoModalOpen"
+      class="modal-backdrop"
+      @click.self="isInfoModalOpen = false"
+    >
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Manuale di Sopravvivenza 🗺️</h2>
+          <h2>{{ t.modal.title }}</h2>
           <button class="modal-close" @click="isInfoModalOpen = false">×</button>
         </div>
-        
+
         <div class="modal-body">
-          <p class="modal-intro">
-            Il <strong>Napoletani Index</strong> traccia l'interesse dei campani verso le mete estere usando i dati di ricerca Google.
-            <strong>Non indica dove vivono</strong>, ma le mete che vorrebbero invadere.
-          </p>
-          
+          <p class="modal-intro" v-html="t.modal.intro"></p>
+
+          <!-- Use cases -->
           <div class="modal-use-cases">
             <div class="use-case">
-              <span class="uc-icon">🤝</span>
+              <span class="uc-icon">{{ t.modal.useCases.find.icon }}</span>
               <div class="uc-text">
-                <strong>Vuoi fare a <em>questione</em>?</strong>
-                <p>Punta alle zone <span class="c-red">Rosse</span>. Ci sarà un parcheggiatore abusivo in aeroporto.</p>
+                <strong v-html="t.modal.useCases.find.title"></strong>
+                <p v-html="t.modal.useCases.find.text"></p>
               </div>
             </div>
+
             <div class="use-case">
-              <span class="uc-icon">🤫</span>
+              <span class="uc-icon">{{ t.modal.useCases.avoid.icon }}</span>
               <div class="uc-text">
-                <strong>Vuoi evitare?</strong>
-                <p>Punta alle zone <span class="c-white">Bianche</span> o <span class="c-yellow">Gialle</span>. Ideale per fingere di essere norvegese ed evitare quell'antropologia del caos descritta come 'calore' che il resto del mondo chiama 'reato di inquinamento acustico'.</p>
+                <strong>{{ t.modal.useCases.avoid.title }}</strong>
+                <p v-html="t.modal.useCases.avoid.text"></p>
               </div>
             </div>
           </div>
 
-          <hr class="modal-divider">
+          <hr class="modal-divider" />
 
-          <h3>La Scienza dietro l'Hype 🧪</h3>
-          <p class="modal-text-sm">
-            Come viene calcolato lo score (ed il colore) di un'intera nazione? Viene utilizzata la logica del <strong>"Più Ricercato + Bonus"</strong>:
-          </p>
+          <!-- Science -->
+          <h3>{{ t.modal.science.title }}</h3>
+          <p class="modal-text-sm" v-html="t.modal.science.intro"></p>
+
           <ul class="tech-list">
-            <li>
-              <strong>Il più ricercato:</strong> Lo score della nazione è dettato maggiormente dalla città più cercata (es. Amsterdam per l'Olanda).
-            </li>
-            <li>
-              <strong>Il bonus volume:</strong> Viene aggiunto un pizzico (15%) del volume delle altre città. Così la Spagna (che ha tante mete come Ibiza, Madrid, Barcellona) ottiene uno score "spalmato" senza "truccare" i numeri.
-            </li>
+            <li
+              v-for="(item, i) in t.modal.science.list"
+              :key="i"
+              v-html="item"
+            />
           </ul>
 
+          <!-- Nerd details -->
           <details class="tech-details">
-            <summary>Dettagli per Nerd 🤓☝️</summary>
+            <summary>{{ t.modal.nerdDetails.title }}</summary>
             <ul>
-              <li><strong>Fonte:</strong> Google Trends (API)</li>
-              <li><strong>Query:</strong> "Voli [Città]" + "Hotel [Città]"</li>
-              <li><strong>Geo:</strong> Campania (IT-72)</li>
-              <li><strong>Timeframe:</strong> Ultimi 3 mesi (Rolling)</li>
-              <li><strong>Normalizzazione:</strong> Calibrato su "Milano" come costante nascosta.</li>
-
-              <li><strong>Confrontabilità:</strong> Poiché Google non permette di confrontare 50 città insieme, sono analizzate a gruppi di 4 usando sempre "Milano" come metro di paragone comune (anchor) per allineare tutti i punteggi sulla stessa scala.</li>
-              <li><strong>Tipo dato:</strong> Serie temporale; per ogni query viene calcolata la <em>media</em> dei punti nel timeframe (media degli <code>extracted_value</code>).</li>
-              <li><strong>Formula indice (per città):</strong> <code>index = (mean(query) / mean(anchor)) * visual_scale</code> → poi arrotondato a 1 decimale.</li>
-              <li><strong>Aggregazione per nazione (mappa):</strong> <code>score_country = top_city + 0.15 * sum(altre_città)</code> (poi arrotondato).</li>
-              <li><strong>Limite interpretazione:</strong> Trends è un proxy di interesse (ricerche), non prenotazioni/arrivi reali; confronti tra batch diversi dipendono dall'ancora.</li>
+              <li
+                v-for="(item, i) in t.modal.nerdDetails.items"
+                :key="i"
+                v-html="item"
+              />
             </ul>
           </details>
 
-          <div class="modal-warning">
-            ⚠️ <strong>Nota:</strong> L'indice misura il <em>desiderio</em> (ricerche), non la presenza fisica futura. Se vedi le Maldive rosse, stanno tutti sognando.
-          </div>
+          <div class="modal-warning" v-html="t.modal.warning"></div>
         </div>
-        
+
         <div class="modal-attribution">
-          made by <a href="https://github.com/sansarc/napoletani-index" target="_blank" rel="noopener">sansarc</a>
+          {{ t.modal.attribution }}
+          <a
+            href="https://github.com/sansarc/napoletani-index"
+            target="_blank"
+            rel="noopener"
+          >
+            sansarc
+          </a>
         </div>
       </div>
     </div>
 
+    <!-- Attribution -->
     <div class="attribution">
-      made by <a href="https://github.com/sansarc/napoletani-index" target="_blank" rel="noopener">sansarc</a>
+      {{ t.attribution }}
+      <a
+        href="https://github.com/sansarc/napoletani-index"
+        target="_blank"
+        rel="noopener"
+      >
+        sansarc
+      </a>
     </div>
 
-    <button v-if="!isOverlayOpen" class="overlay-toggle" @click="isOverlayOpen = true">
-      Legenda
+    <!-- Overlay toggle -->
+    <button
+      v-if="!isOverlayOpen"
+      class="overlay-toggle"
+      @click="isOverlayOpen = true"
+    >
+      {{ t.overlay.toggleBtn }}
     </button>
 
+    <!-- Overlay -->
     <div v-if="isOverlayOpen" class="overlay">
       <div class="overlay-header">
         <div class="overlay-title">
-          <h1>Napoletani Index</h1>
-          <span class="overlay-subtitle">Dove sognano di andare in vacanza</span>
+          <h1>{{ t.overlay.title }}</h1>
+          <span class="overlay-subtitle">
+            {{ t.overlay.subtitle }}
+          </span>
         </div>
         <button class="overlay-close" @click="isOverlayOpen = false">×</button>
       </div>
 
       <div class="legend">
-        <div class="legend-title">Hype</div>
+        <div class="legend-title">{{ t.overlay.legendTitle }}</div>
+
         <div class="legend-gradient-row">
-          <span class="legend-axis-label">Deserto</span>
+          <span class="legend-axis-label">
+            {{ t.overlay.axisLabels.low }}
+          </span>
           <div class="legend-gradient"></div>
-          <span class="legend-axis-label">Invasione</span>
+          <span class="legend-axis-label">
+            {{ t.overlay.axisLabels.high }}
+          </span>
         </div>
-        
+
         <div class="legend-bins">
-          <div class="legend-item"><span class="legend-swatch" style="background:#800026"></span><span class="legend-label">≥ 90 (Folla)</span></div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#bd0026"></span><span class="legend-label">60–89</span></div>
-
-          <div class="legend-item"><span class="legend-swatch" style="background:#e31a1c"></span><span class="legend-label">40–59</span></div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#fc4e2a"></span><span class="legend-label">20–39</span></div>
-
-          <div class="legend-item"><span class="legend-swatch" style="background:#fd8d3c"></span><span class="legend-label">12–19</span></div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#feb24c"></span><span class="legend-label">8–11</span></div>
-
-          <div class="legend-item"><span class="legend-swatch" style="background:#fed976"></span><span class="legend-label">4–7</span></div>
-          <div class="legend-item"><span class="legend-swatch" style="background:#ffe128"></span><span class="legend-label">1–3</span></div>
-
-          <div class="legend-item"><span class="legend-swatch" style="background:#fff2a8"></span><span class="legend-label">0 (Pace)</span></div>
+          <div
+            class="legend-item"
+            v-for="(bin, i) in t.overlay.bins"
+            :key="i"
+          >
+            <span
+              class="legend-swatch"
+              :style="{ background: bin.color }"
+            ></span>
+            <span class="legend-label">{{ bin.label }}</span>
+          </div>
         </div>
       </div>
 
+      <!-- Top 3 -->
       <div v-if="isTop3Open" class="top3">
         <div class="top3-header">
-          <div class="top3-title">Top 3 Destinazioni</div>
+          <div class="top3-title">{{ t.overlay.top3.title }}</div>
           <button class="top3-close" @click="isTop3Open = false">×</button>
         </div>
+
         <div class="top3-list">
-          <div v-for="(d, i) in top3Destinations" :key="i" class="top3-item">
+          <div
+            v-for="(d, i) in top3Destinations"
+            :key="i"
+            class="top3-item"
+          >
             <span class="top3-rank">#{{ i + 1 }}</span>
-            <span class="top3-name">{{ d.name }}</span>
+            <span class="top3-name">{{ cityName(d.name) }}</span>
             <span class="top3-score">{{ d.index }}</span>
           </div>
         </div>
-        <div v-if="lastUpdated" class="legend-updated" style="margin-top: 8px; text-align: right;">
-          Aggiornato: {{ lastUpdated }}
+
+        <div
+          v-if="lastUpdated"
+          class="legend-updated"
+          style="margin-top: 8px; text-align: right;"
+        >
+          {{ t.overlay.updated }}: {{ lastUpdated }}
         </div>
       </div>
-      <button v-else class="top3-toggle" @click="isTop3Open = true">Top 3</button>
 
-      <div v-if="lastUpdated" class="legend-updated legend-updated--bottom">
-        Aggiornato: {{ lastUpdated }}
+      <button
+        v-else
+        class="top3-toggle"
+        @click="isTop3Open = true"
+      >
+        {{ t.overlay.top3.toggleBtn }}
+      </button>
+
+      <div
+        v-if="lastUpdated"
+        class="legend-updated legend-updated--bottom"
+      >
+        {{ t.overlay.updated }}: {{ lastUpdated }}
       </div>
     </div>
   </div>
 </template>
+
 
 <style scoped>
     /* =========================================
@@ -388,6 +447,30 @@ function hideNotification() {
 /* =========================================
    1. MODAL STYLES (INFO & USE CASES)
    ========================================= */
+
+.lang-btn {
+  position: absolute;
+  top: 20px; 
+  left: 200px;
+  z-index: 1001;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.lang-btn:hover {
+  transform: scale(1.1);
+  background: #f0f9ff;
+}
 
 @keyframes pulse-attention {
   0% { box-shadow: 0 0 0 0 rgba(8, 69, 148, 0.4); transform: scale(1); }
@@ -547,6 +630,35 @@ function hideNotification() {
 .c-white { color: #9ca3af; font-weight: 700; }
 .c-yellow { color: #f59e0b; font-weight: 700; }
 
+/* ===== v-html FIX ===== */
+
+:deep(.c-red) {
+  color: #d32f2f;
+  font-weight: 700;
+}
+
+:deep(.c-white) {
+  color: #9ca3af;
+  font-weight: 700;
+}
+
+:deep(.c-yellow) {
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+:deep(code) {
+  font-size: 0.88em;
+  font-family: monospace;
+  background: #e2e8f0;
+  color: #0f172a;
+  padding: 0.12em 0.38em;
+  border-radius: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  white-space: normal;
+  word-break: break-word;
+}
+
 .modal-divider {
   border: 0;
   border-top: 1px dashed #e5e7eb;
@@ -661,8 +773,8 @@ function hideNotification() {
   backdrop-filter: blur(10px);
 }
 .overlay-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.overlay-title h1 { margin: 0 0 2px 0; font-size: 1.4rem; color: #1e293b; letter-spacing: -0.5px; }
-.overlay-subtitle { font-size: 0.75rem; color: #64748b; font-weight: 500; display: block; }
+.overlay-title h1 { margin: 0 0 2px 0; font-size: 1.6rem; color: #1e293b; letter-spacing: -0.5px; }
+.overlay-subtitle { font-size: 1rem; color: #64748b; font-weight: 500; display: block; }
 .overlay-close { flex: 0 0 auto; border: 0; background: transparent; font-size: 22px; line-height: 1; padding: 0 4px; cursor: pointer; color: #64748b; }
 
 .overlay-toggle { 
@@ -773,6 +885,8 @@ function hideNotification() {
     margin-bottom: 20px;
   }
 
+  .lang-btn { top: 90px; left: 10px; width: 40px; height: 40px; font-size: 1.4rem; }
+
   .uc-icon { font-size: 1.5rem; }
   .uc-text strong { font-size: 0.95rem; }
   .uc-text p { font-size: 0.9rem; }
@@ -782,7 +896,36 @@ function hideNotification() {
   .modal-warning { font-size: 0.9rem; }
 
   /* --- FIX MAP AND MOBILE OVERLAY --- */
-  .overlay { top: 10px; right: 10px; padding: 12px; width: 200px; }
+  .overlay { top: 10px; right: 10px; padding: 10px; width: 165px; }
+  
+  .overlay-header { gap: 6px; }
+  .overlay-title h1 { font-size: 1rem; }
+  .overlay-subtitle { font-size: 0.6rem; }
+  .overlay-close { font-size: 18px; }
+  
+  .legend { margin-top: 6px; }
+  .legend-title { font-size: 0.7rem; margin-bottom: 4px; }
+  .legend-gradient-row { gap: 4px; margin-bottom: 8px; }
+  .legend-axis-label { font-size: 8px; }
+  .legend-gradient { height: 6px; }
+  .legend-bins { gap: 3px 6px; }
+  .legend-item { gap: 5px; }
+  .legend-swatch { width: 10px; height: 10px; border-radius: 2px; }
+  .legend-label { font-size: 9px; }
+  
+  .top3 { margin-top: 12px; }
+  .top3-header { margin-bottom: 6px; }
+  .top3-title { font-size: 0.7rem; }
+  .top3-list { gap: 4px; }
+  .top3-item { padding: 6px 8px; gap: 8px; border-radius: 6px; }
+  .top3-rank { width: 16px; height: 16px; font-size: 9px; }
+  .top3-name { font-size: 10px; }
+  .top3-score { font-size: 10px; }
+  
+  .top3-toggle { margin-top: 8px; padding: 6px; font-size: 0.75rem; }
+  .legend-updated { font-size: 8px; }
+  .legend-updated--bottom { margin-top: 8px; padding-top: 6px; }
+
   .info-btn { 
     top: 10px; 
     left: 10px; 
@@ -794,8 +937,9 @@ function hideNotification() {
   
   .attribution { 
     left: 10px;
-    right: auto; 
-    bottom: 120px; 
+    right: auto;
+    bottom: auto; 
+    top: 53px; 
     font-size: 12px; 
     padding: 6px 12px;
   }
