@@ -2,6 +2,7 @@ import json
 import os
 from serpapi import GoogleSearch
 from dotenv import load_dotenv
+from datetime import datetime
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -117,12 +118,14 @@ for i, batch in enumerate(batches):
             city_name_clean = clean_query_name(query_string)
             iso_code = ISO_MAP.get(city_name_clean, "UNK")
             country_name = COUNTRY_NAMES.get(iso_code, "Mondo")
+            today = datetime.now().strftime("%Y-%m-%d")
 
             final_results.append({
                 "name": city_name_clean,
                 "country_code": iso_code,
                 "country_name": country_name,
-                "index": round(normalized_score, 1)
+                "index": round(normalized_score, 1),
+                "last_updated": today
             })
 
     except Exception as e:
