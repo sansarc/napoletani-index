@@ -28,7 +28,7 @@ except json.JSONDecodeError:
 
 # Settings
 ANCHOR_CITY = config['settings']['anchor_city']
-SCALA_VISIVA = config['settings']['visual_scale']
+VISUAL_SCALE_FACTOR = config['settings']['visual_scale']
 GEO_CODE = config['settings']['geo']
 TIMEFRAME = config['settings']['timeframe']
 COUNTRY_NAMES = config['country_names']
@@ -39,20 +39,33 @@ ISO_MAP = {item['city']: item['iso'] for item in DESTINATIONS_DATA}
 CITIES_LIST = [item['city'] for item in DESTINATIONS_DATA]
 
 def build_query(city_name):
-    """Build a compound query like: 'Voli Milano + Hotel Milano'."""
     return f"Voli {city_name} + Hotel {city_name}"
 
 def clean_query_name(query_string):
-    """Extract a display city name: 'Voli Londra + Hotel Londra' -> 'Londra'."""
     return query_string.split(" +")[0].replace("Voli ", "").strip()
 
 def chunks(lst, n):
-    """Yield list chunks of size n."""
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
-ANCHOR_QUERY = build_query(ANCHOR_CITY)
-print(f"Config: anchor='{ANCHOR_CITY}' | scale=x{SCALA_VISIVA} | output='{os.path.basename(RESULTS_FILE)}'")
+ANCHOR_KEYWORD = build_query(ANCHOR_CITY)
+print(f"Config: anchor='{ANCHOR_CITY}' | scale=x{VISUAL_SCALE_FACTOR} | output='{os.path.basename(RESULTS_FILE)}'")
+
+# reading old data
+old_indices = {}
+
+if os.path.exists(RESULTS_FILE):
+    try:
+        with open(RESULTS_FILE, 'r', encoding='utf-8') as f:
+            old_data = json.load(f)
+
+            for item in old_data:
+                # use city name as key to recover previous index
+                if 'name' in item and 'index' in item:
+                    old_indices[item['name']] = item['index']
+        print(f"recuperati {len(old_indices)} indici precedenti per il calcolo trend.")
+    except Exception as e:
+        print(f"Impossibile leggere dati vecchi: {e}. I trend saranno nulli.")
 
 final_results = []
 batches = list(chunks(CITIES_LIST, 4))  # 4 cities + 1 anchor = 5 queries
@@ -61,7 +74,7 @@ print(f"Starting scan: {len(CITIES_LIST)} destinations in {len(batches)} batches
 
 for i, batch in enumerate(batches):
     batch_queries = [build_query(city) for city in batch]
-    current_request_queries = batch_queries + [ANCHOR_QUERY]  # always include anchor
+    current_request_queries = batch_queries + [ANCHOR_KEYWORD]  # always include anchor
 
     print(f"\nBatch {i+1}/{len(batches)}: {batch}...")
 
@@ -99,23 +112,33 @@ for i, batch in enumerate(batches):
 
         batch_means = {}
         if valid_points_count > 0:
-            for idx, query_string in enumerate(current_request_queries):
-                batch_means[query_string] = sums[idx] / valid_points_count
+            for idx, keyword in enumerate(current_request_queries):
+                batch_means[keyword] = sums[idx] / valid_points_count
         else:
             continue
 
-        anchor_val = batch_means.get(ANCHOR_QUERY, 0)
+        anchor_val = batch_means.get(ANCHOR_KEYWORD, 0)
         if anchor_val == 0:
             print("Warning: anchor value is 0; skipping normalization for this batch.")
             continue
 
-        for query_string, raw_score in batch_means.items():
-            if query_string == ANCHOR_QUERY:
+        for keyword, raw_score in batch_means.items():
+            if keyword == ANCHOR_KEYWORD:
                 continue
 
-            normalized_score = (raw_score / anchor_val) * SCALA_VISIVA
+            normalized_score = (raw_score / anchor_val) * VISUAL_SCALE_FACTOR
+            index = round(normalized_score, 1)
 
-            city_name_clean = clean_query_name(query_string)
+            city_name_clean = clean_query_name(keyword)
+            old_index = old_indices.get(city_name_clean, 0)
+            diff = index - old_index
+
+            trend_direction = "stable"
+            if diff > 1.0:
+                trend_direction = "up"
+            elif diff < -1.0:
+                trend_direction = "down"
+
             iso_code = ISO_MAP.get(city_name_clean, "UNK")
             country_name = COUNTRY_NAMES.get(iso_code, "Mondo")
             today = datetime.now().strftime("%Y-%m-%d")
@@ -124,7 +147,9 @@ for i, batch in enumerate(batches):
                 "name": city_name_clean,
                 "country_code": iso_code,
                 "country_name": country_name,
-                "index": round(normalized_score, 1),
+                "index": index,
+                "trend": trend_direction,
+                "trend_diff": round(diff, 1),
                 "last_updated": today
             })
 
