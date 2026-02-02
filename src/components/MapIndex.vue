@@ -21,6 +21,7 @@ const DEPARTURE_COORDS = [40.8518, 14.2681];
 const isOverlayOpen = ref(true);
 const isTop3Open = ref(false);
 const isInfoModalOpen = ref(false);
+const isScoreboardOpen = ref(false);
 const isNotificationVisible = ref(true);
 const selectedDest = ref(null);
 
@@ -32,6 +33,18 @@ const top3Destinations = computed(() => {
     .slice(0, 3);
 });
 
+const sortedCountries = computed(() => {
+  return Object.entries(countryData)
+    .map(([code, data]) => ({
+      code,
+      name: countryName(code),
+      totalIndex: data.totalIndex,
+      topCity: data.locations[0],
+      locations: data.locations
+    }))
+    .sort((a, b) => b.totalIndex - a.totalIndex);
+});
+
 const lastUpdated = computed(() => rawDestinations?.[0]?.last_updated ?? null);
 
 // data preparation
@@ -40,7 +53,7 @@ const countryData = {};
 rawDestinations.forEach(dest => {
   const code = dest.country_code; 
   if (!countryData[code]) 
-    countryData[code] = { name: countryName(code), totalIndex: 0, locations: [] };
+    countryData[code] = { code, totalIndex: 0, locations: [] };
   
   countryData[code].locations.push(dest);
 }); 
@@ -105,7 +118,7 @@ function onEachFeature(feature, layer) {
             let popupContent = `
             <div style="text-align:center; min-width:${minWidth}px; font-family: sans-serif;">
                 <h3 style="margin:0 0 5px 0; color:#084594; border-bottom: 2px solid #eee; padding-bottom:5px;">
-                ${myData.name}
+                ${countryName(myData.code)}
                 </h3>
                 <div style="background:#f1f5f9; padding:8px; border-radius:6px; margin-bottom:12px;">
                 <span style="font-size:${labelFontSize}; color:#64748b; display:block">${t.value.popup.nationalIndex}</span>
@@ -151,8 +164,17 @@ function onEachFeature(feature, layer) {
     }
 }
 
+function handleKeydown(e) {
+  if (e.key === 'Escape') {
+    if (isInfoModalOpen.value) isInfoModalOpen.value = false;
+    if (isScoreboardOpen.value) isScoreboardOpen.value = false;
+  }
+}
+
 // initialization
 onMounted(async () => {
+  document.addEventListener('keydown', handleKeydown);
+  
   map = L.map(mapContainer.value, {
       center: [40, 10], 
       zoom: 3,
@@ -249,6 +271,8 @@ function drawPath(dest) {
 watch(selectedDest, (newDest) => drawPath(newDest));
 
 onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeydown);
+  
   if (flightPath && map) {
     map.removeLayer(flightPath);
   }
@@ -365,6 +389,42 @@ onUnmounted(() => {
       </div>
     </div>
 
+    <!-- Scoreboard Modal -->
+    <div
+      v-if="isScoreboardOpen"
+      class="modal-backdrop"
+      @click.self="isScoreboardOpen = false"
+    >
+      <div class="modal-content scoreboard-modal">
+        <div class="modal-header">
+          <h2>{{ t.overlay.scoreboard.title }}</h2>
+          <button class="modal-close" @click="isScoreboardOpen = false">×</button>
+        </div>
+
+        <div class="modal-body scoreboard-body">
+          <div class="scoreboard-list">
+            <div
+              v-for="(country, i) in sortedCountries"
+              :key="country.code"
+              class="scoreboard-item"
+            >
+              <span class="scoreboard-rank">#{{ i + 1 }}</span>
+              <span class="scoreboard-name">{{ country.name }}</span>
+              <span class="scoreboard-score">{{ country.totalIndex }}</span>
+              <span 
+                v-if="country.topCity?.trend && country.topCity.trend !== 'stable'" 
+                :class="['trend-badge', country.topCity.trend]"
+              >
+                {{ country.topCity.trend === 'up' ? '↗' : '↘' }}
+                {{ country.topCity.trend_diff > 0 ? '+' : '' }}{{ country.topCity.trend_diff }}
+              </span>
+              <span v-else class="trend-badge stable">=</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Attribution -->
     <div class="attribution">
       {{ t.attribution }}
@@ -455,6 +515,14 @@ onUnmounted(() => {
         @click="isTop3Open = true"
       >
         {{ t.overlay.top3.toggleBtn }}
+      </button>
+
+      <!-- Scoreboard button -->
+      <button
+        class="scoreboard-toggle"
+        @click="isScoreboardOpen = true"
+      >
+        {{ t.overlay.scoreboard.toggleBtn }} 
       </button>
 
       <div

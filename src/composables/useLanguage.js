@@ -91,6 +91,10 @@ const dictionary = {
         title: 'Top 3 Destinazioni',
         toggleBtn: 'Top 3'
       },
+      scoreboard: {
+        title: '🏆 Classifica',
+        toggleBtn: '🏆 Classifica Completa'
+      },
       updated: 'Aggiornato'
     },
 
@@ -180,6 +184,10 @@ const dictionary = {
         top3: {
             title: 'Top 3 Destinations',
             toggleBtn: 'Top 3'
+        },
+        scoreboard: {
+            title: '🏆 Scoreboard',
+            toggleBtn: '🏆 Full Scoreboard'
         },
         updated: 'Updated'
     },
