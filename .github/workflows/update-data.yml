@@ -40,10 +40,10 @@ jobs:
         git config --global user.email 'bot@napoletani-index.com'
         
         # Check if there are changes to the JSON file
-        if [[ -n $(git status -s src/assets/real_data.json) ]]; then
+        if [[ -n $(git status -s src/assets/data.json) ]]; then
           echo "Data changed, committing..."
-          git add src/assets/real_data.json
-          git commit -m "Auto-update: new Hype Index data"
+          git add src/assets/data.json
+          git commit -m "🤖 Auto-update: new Hype Index data"
           git push
         else
           echo "No changes in data. No commit needed."
