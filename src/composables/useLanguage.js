@@ -15,11 +15,11 @@ const currentLang = ref(detectLang());
 const dictionary = {
   it: {
     infoBtn: 'Come funziona?',
-
-    modal: {
+    docs: {
       title: 'Manuale di Sopravvivenza 🗺️',
+      backToMap: 'Torna alla mappa',
       intro: 'Il <strong>Napoletani Index</strong> traccia l\'interesse dei campani verso le mete estere usando i dati di ricerca Google. <strong>Non indica dove vivono</strong>, ma le mete che vorrebbero invadere.',
-      
+      useCasesTitle: 'Quando usarlo',
       useCases: {
         find: {
           icon: '✊',
@@ -32,7 +32,6 @@ const dictionary = {
           text: 'Punta alle zone <span class="c-white">Bianche</span> o <span class="c-yellow">Gialle</span>. Ideale per fingere di essere norvegese ed evitare quell\'antropologia del caos descritta come \'calore\' che il resto del mondo chiama \'reato di inquinamento acustico\'.'
         }
       },
-
       science: {
         title: 'La Scienza dietro l\'Hype 📈',
         intro: 'Come viene calcolato lo score (ed il colore) di un\'intera nazione? Viene utilizzata la logica del <strong>"Più Ricercato + Bonus"</strong>:',
@@ -41,7 +40,6 @@ const dictionary = {
           '<strong>Il bonus volume:</strong> Viene aggiunto un pizzico (15%) del volume delle altre città. Così la Spagna (che ha tante mete come Ibiza, Madrid, Barcellona) ottiene uno score "spalmato" senza "truccare" i numeri.'
         ]
       },
-
       nerdDetails: {
         title: 'Dettagli per Nerd 🤓☝️',
         items: [
@@ -57,9 +55,8 @@ const dictionary = {
           '<strong>Limite interpretazione:</strong> Trends è un proxy di interesse (ricerche), non prenotazioni/arrivi reali; confronti tra batch diversi dipendono dall\'ancora.'
         ]
       },
-
       warning: '⚠️ <strong>Nota:</strong> L\'indice misura il <em>desiderio</em> (ricerche), non la presenza fisica futura. Se vedi le Maldive rosse, stanno tutti sognando.',
-      attribution: 'made by'
+      attribution: 'github repo'
     },
 
     overlay: {
@@ -96,59 +93,53 @@ const dictionary = {
     // Popup (country details)
     popup: {
       nationalIndex: 'Indice Nazionale'
-    },
-
-    // Attribution
-    attribution: 'made by'
+    }
   },
 
   en: {
     infoBtn: 'How does it work?',
-
-    modal: {
-        title: 'Survival Manual 🗺️',
-        intro: 'The <strong>Napoletani</strong> (Neapolitans) <strong>Index</strong> tracks the interest of people from Campania in foreign destinations using Google search data. <strong>It does not indicate where they live</strong>, but the places they dream of invading.',
-
-        useCases: {
-            find: {
-                icon: '✊',
-                title: 'Looking for a challenge?',
-                text: 'Aim for the <span class="c-red">Red</span> zones. There will be an illegal parking attendant at the airport.'
-            },
-            avoid: {
-                icon: '🤫',
-                title: 'Want to avoid?',
-                text: 'Aim for the <span class="c-white">White</span> or <span class="c-yellow">Yellow</span> zones. Perfect for pretending to be Norwegian and avoiding that anthropology of chaos described as "warmth" that the rest of the world calls "noise pollution crime".'
-            }
+    docs: {
+      title: 'Survival Manual 🗺️',
+      backToMap: 'Back to map',
+      intro: 'The <strong>Napoletani</strong> (Neapolitans) <strong>Index</strong> tracks the interest of people from Campania in foreign destinations using Google search data. <strong>It does not indicate where they live</strong>, but the places they dream of invading.',
+      useCasesTitle: 'When to use it',
+      useCases: {
+        find: {
+          icon: '✊',
+          title: 'Looking for a challenge?',
+          text: 'Aim for the <span class="c-red">Red</span> zones. There will be an illegal parking attendant at the airport.'
         },
-
-        science: {
-            title: 'The Science Behind the Hype 📈',
-            intro: 'How is the score (and color) of an entire nation calculated? The logic of <strong>"Most Searched + Bonus"</strong> is used:',
-            list: [
-                '<strong>Most searched:</strong> The nation\'s score is mainly determined by the most searched city (e.g., Amsterdam for the Netherlands).',
-                '<strong>Volume bonus:</strong> A pinch (15%) of the volume from other cities is added. So Spain (which has many destinations like Ibiza, Madrid, Barcelona) gets a "spread" score without "fudging" the numbers.'
-            ]
-        },
-
-        nerdDetails: {
-            title: 'Nerd Details 🤓☝️',
-            items: [
-                '<strong>Source:</strong> Google Trends (API)',
-                '<strong>Query:</strong> "Flights [City]" + "Hotel [City]"',
-                '<strong>Geo:</strong> Campania (IT-72)',
-                '<strong>Timeframe:</strong> Last 3 months (Rolling)',
-                '<strong>Normalization:</strong> Calibrated on "Milan" as a hidden constant.',
-                '<strong>Comparability:</strong> Since Google does not allow comparing 50 cities together, they are analyzed in groups of 4 always using "Milan" as a common benchmark (anchor) to align all scores on the same scale.',
-                '<strong>Data type:</strong> Time series; for each query, the <em>average</em> of the points in the timeframe is calculated (average of <code>extracted_value</code>).',
-                '<strong>Index formula (per city):</strong> <code>index = (mean(query) / mean(anchor)) * visual_scale</code> → then rounded to 1 decimal.',
-                '<strong>Aggregation by country (map):</strong> <code>score_country = top_city + 0.15 * sum(other_cities)</code> (then rounded).',
-                '<strong>Interpretation limit:</strong> Trends is a proxy for interest (searches), not real bookings/arrivals; comparisons between different batches depend on the anchor.'
-            ]
-        },
-
-        warning: '⚠️ <strong>Note:</strong> The index measures <em>desire</em> (searches), not future physical presence. If you see the Maldives in red, everyone is just dreaming.',
-        attribution: 'made by'
+        avoid: {
+          icon: '🤫',
+          title: 'Want to avoid?',
+          text: 'Aim for the <span class="c-white">White</span> or <span class="c-yellow">Yellow</span> zones. Perfect for pretending to be Norwegian and avoiding that anthropology of chaos described as "warmth" that the rest of the world calls "noise pollution crime".'
+        }
+      },
+      science: {
+        title: 'The Science Behind the Hype 📈',
+        intro: 'How is the score (and color) of an entire nation calculated? The logic of <strong>"Most Searched + Bonus"</strong> is used:',
+        list: [
+          '<strong>Most searched:</strong> The nation\'s score is mainly determined by the most searched city (e.g., Amsterdam for the Netherlands).',
+          '<strong>Volume bonus:</strong> A pinch (15%) of the volume from other cities is added. So Spain (which has many destinations like Ibiza, Madrid, Barcelona) gets a "spread" score without "fudging" the numbers.'
+        ]
+      },
+      nerdDetails: {
+        title: 'Nerd Details 🤓☝️',
+        items: [
+          '<strong>Source:</strong> Google Trends (API)',
+          '<strong>Query:</strong> "Flights [City]" + "Hotel [City]"',
+          '<strong>Geo:</strong> Campania (IT-72)',
+          '<strong>Timeframe:</strong> Last 3 months (Rolling)',
+          '<strong>Normalization:</strong> Calibrated on "Milan" as a hidden constant.',
+          '<strong>Comparability:</strong> Since Google does not allow comparing 50 cities together, they are analyzed in groups of 4 always using "Milan" as a common benchmark (anchor) to align all scores on the same scale.',
+          '<strong>Data type:</strong> Time series; for each query, the <em>average</em> of the points in the timeframe is calculated (average of <code>extracted_value</code>).',
+          '<strong>Index formula (per city):</strong> <code>index = (mean(query) / mean(anchor)) * visual_scale</code> → then rounded to 1 decimal.',
+          '<strong>Aggregation by country (map):</strong> <code>score_country = top_city + 0.15 * sum(other_cities)</code> (then rounded).',
+          '<strong>Interpretation limit:</strong> Trends is a proxy for interest (searches), not real bookings/arrivals; comparisons between different batches depend on the anchor.'
+        ]
+      },
+      warning: '⚠️ <strong>Note:</strong> The index measures <em>desire</em> (searches), not future physical presence. If you see the Maldives in red, everyone is just dreaming.',
+      attribution: 'github repo'
     },
 
     overlay: {
@@ -184,9 +175,7 @@ const dictionary = {
 
     popup: {
         nationalIndex: 'National Index'
-    },
-
-    attribution: 'made by'
+    }
   }
 };
 

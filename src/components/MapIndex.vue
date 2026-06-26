@@ -17,8 +17,6 @@ let flightPath = null;
 let marker = null;
 const DEPARTURE_COORDS = [40.8518, 14.2681];
 
-// UI state
-const isInfoModalOpen = ref(false);
 const isScoreboardOpen = ref(false);
 const selectedDest = ref(null);
 
@@ -153,7 +151,6 @@ function onEachFeature(feature, layer) {
 
 function handleKeydown(e) {
   if (e.key === 'Escape') {
-    if (isInfoModalOpen.value) isInfoModalOpen.value = false;
     if (isScoreboardOpen.value) isScoreboardOpen.value = false;
   }
 }
@@ -267,89 +264,9 @@ onUnmounted(() => {
       {{ currentLang === 'it' ? '🇺🇸' : '🇮🇹' }}
     </button>
 
-    <!-- Info button -->
-    <button
-      class="info-btn"
-      @click="isInfoModalOpen = true"
-    >
-      <span class="info-btn-text">{{ t.infoBtn }}</span>
-    </button>
-
-    <!-- Modal -->
-    <div
-      v-if="isInfoModalOpen"
-      class="modal-backdrop"
-      @click.self="isInfoModalOpen = false"
-    >
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>{{ t.modal.title }}</h2>
-          <button class="modal-close" @click="isInfoModalOpen = false">×</button>
-        </div>
-
-        <div class="modal-body">
-          <p class="modal-intro" v-html="t.modal.intro"></p>
-
-          <!-- Use cases -->
-          <div class="modal-use-cases">
-            <div class="use-case">
-              <span class="uc-icon">{{ t.modal.useCases.find.icon }}</span>
-              <div class="uc-text">
-                <strong v-html="t.modal.useCases.find.title"></strong>
-                <p v-html="t.modal.useCases.find.text"></p>
-              </div>
-            </div>
-
-            <div class="use-case">
-              <span class="uc-icon">{{ t.modal.useCases.avoid.icon }}</span>
-              <div class="uc-text">
-                <strong>{{ t.modal.useCases.avoid.title }}</strong>
-                <p v-html="t.modal.useCases.avoid.text"></p>
-              </div>
-            </div>
-          </div>
-
-          <hr class="modal-divider" />
-
-          <!-- Science -->
-          <h3>{{ t.modal.science.title }}</h3>
-          <p class="modal-text-sm" v-html="t.modal.science.intro"></p>
-
-          <ul class="tech-list">
-            <li
-              v-for="(item, i) in t.modal.science.list"
-              :key="i"
-              v-html="item"
-            />
-          </ul>
-
-          <!-- Nerd details -->
-          <details class="tech-details">
-            <summary>{{ t.modal.nerdDetails.title }}</summary>
-            <ul>
-              <li
-                v-for="(item, i) in t.modal.nerdDetails.items"
-                :key="i"
-                v-html="item"
-              />
-            </ul>
-          </details>
-
-          <div class="modal-warning" v-html="t.modal.warning"></div>
-        </div>
-
-        <div class="modal-attribution">
-          {{ t.modal.attribution }}
-          <a
-            href="https://github.com/sansarc/napoletani-index"
-            target="_blank"
-            rel="noopener"
-          >
-            sansarc
-          </a>
-        </div>
-      </div>
-    </div>
+    <a class="info-btn" href="#/docs">
+      <span>{{ t.infoBtn }}</span>
+    </a>
 
     <!-- Scoreboard Modal -->
     <div
@@ -385,18 +302,6 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Attribution -->
-    <div class="attribution">
-      {{ t.attribution }}
-      <a
-        href="https://github.com/sansarc/napoletani-index"
-        target="_blank"
-        rel="noopener"
-      >
-        sansarc
-      </a>
     </div>
 
     <!-- Overlay -->
@@ -436,6 +341,11 @@ onUnmounted(() => {
       >
         {{ t.overlay.scoreboard.toggleBtn }}
       </button>
+
+      <span class="legend-updated">
+        {{ t.overlay.updated }} {{  rawDestinations[0].last_updated  }}
+      </span>
+
     </div>
   </div>
 </template>
