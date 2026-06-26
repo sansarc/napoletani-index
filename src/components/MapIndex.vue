@@ -18,20 +18,9 @@ let marker = null;
 const DEPARTURE_COORDS = [40.8518, 14.2681];
 
 // UI state
-const isOverlayOpen = ref(true);
-const isTop3Open = ref(false);
 const isInfoModalOpen = ref(false);
 const isScoreboardOpen = ref(false);
-const isNotificationVisible = ref(true);
 const selectedDest = ref(null);
-
-const top3Destinations = computed(() => {
-  return [...rawDestinations]
-    .map(d => ({ ...d, index: Number(d.index) }))
-    .filter(d => Number.isFinite(d.index))
-    .sort((a, b) => b.index - a.index)
-    .slice(0, 3);
-});
 
 const sortedCountries = computed(() => {
   return Object.entries(countryData)
@@ -44,8 +33,6 @@ const sortedCountries = computed(() => {
     }))
     .sort((a, b) => b.totalIndex - a.totalIndex);
 });
-
-const lastUpdated = computed(() => rawDestinations?.[0]?.last_updated ?? null);
 
 // data preparation
 const countryData = {};
@@ -188,13 +175,6 @@ onMounted(async () => {
   map.getPane('flightPathPane').style.zIndex = 650;
   
   L.control.zoom({ position: 'bottomright' }).addTo(map);
-
-  setTimeout(() => {
-    hideNotification();
-  }, 5000);
-
-  map.on('click', hideNotification);
-  map.on('dragstart', hideNotification);
   map.on('popupclose', () => selectedDest.value = null);
 
   try {
@@ -210,10 +190,6 @@ onMounted(async () => {
     console.error("Error loading map:", error);
   }
 });
-
-function hideNotification() {
-  isNotificationVisible.value = false;
-}
 
 // flight path drawing
 function drawPath(dest) {
@@ -285,20 +261,6 @@ onUnmounted(() => {
 <template>
   <div class="map-wrapper">
     <div ref="mapContainer" class="map-container"></div>
-
-    <!-- Notification Toast -->
-    <Transition name="notification">
-      <div
-        v-if="isNotificationVisible"
-        class="notification-toast"
-        @click="hideNotification"
-      >
-        <span class="notification-icon">{{ t.notification.icon }}</span>
-        <span class="notification-text">
-          {{ t.notification.text }}
-        </span>
-      </div>
-    </Transition>
 
     <!-- Language toggle -->
     <button class="lang-btn" @click="toggleLang">
@@ -437,27 +399,8 @@ onUnmounted(() => {
       </a>
     </div>
 
-    <!-- Overlay toggle -->
-    <button
-      v-if="!isOverlayOpen"
-      class="overlay-toggle"
-      @click="isOverlayOpen = true"
-    >
-      {{ t.overlay.toggleBtn }}
-    </button>
-
     <!-- Overlay -->
-    <div v-if="isOverlayOpen" class="overlay">
-      <div class="overlay-header">
-        <div class="overlay-title">
-          <h1>{{ t.overlay.title }}</h1>
-          <span class="overlay-subtitle">
-            {{ t.overlay.subtitle }}
-          </span>
-        </div>
-        <button class="overlay-close" @click="isOverlayOpen = false">×</button>
-      </div>
-
+    <div class="overlay">
       <div class="legend">
         <div class="legend-title">{{ t.overlay.legendTitle }}</div>
 
@@ -486,51 +429,13 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <!-- Top 3 -->
-      <div v-if="isTop3Open" class="top3">
-        <div class="top3-header">
-          <div class="top3-title">{{ t.overlay.top3.title }}</div>
-          <button class="top3-close" @click="isTop3Open = false">×</button>
-        </div>
-
-        <div class="top3-list">
-          <div
-            v-for="(d, i) in top3Destinations"
-            :key="i"
-            class="top3-item"
-          >
-            <span class="top3-rank">#{{ i + 1 }}</span>
-            <span class="top3-name">{{ cityName(d.name) }}</span>
-            <span class="top3-score">{{ d.index }}</span>
-            <span v-if="d.trend !== 'stable'" :class="['trend-badge', d.trend]">
-              {{ d.trend === 'up' ? '↗' : '↘' }}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <button
-        v-else
-        class="top3-toggle"
-        @click="isTop3Open = true"
-      >
-        {{ t.overlay.top3.toggleBtn }}
-      </button>
-
       <!-- Scoreboard button -->
       <button
         class="scoreboard-toggle"
         @click="isScoreboardOpen = true"
       >
-        {{ t.overlay.scoreboard.toggleBtn }} 
+        {{ t.overlay.scoreboard.toggleBtn }}
       </button>
-
-      <div
-        v-if="lastUpdated"
-        class="legend-updated legend-updated--bottom"
-      >
-        {{ t.overlay.updated }}: {{ lastUpdated }}
-      </div>
     </div>
   </div>
 </template>

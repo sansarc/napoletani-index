@@ -14,11 +14,6 @@ const currentLang = ref(detectLang());
 
 const dictionary = {
   it: {
-    notification: {
-      icon: '🔎',
-      text: 'Tocca sui paesi colorati per i dettagli.'
-    },
-
     infoBtn: 'Come funziona?',
 
     modal: {
@@ -93,7 +88,7 @@ const dictionary = {
       },
       scoreboard: {
         title: '🏆 Classifica',
-        toggleBtn: '🏆 Classifica Completa'
+        toggleBtn: '🏆 Classifica'
       },
       updated: 'Aggiornato'
     },
@@ -108,11 +103,6 @@ const dictionary = {
   },
 
   en: {
-    notification: {
-        icon: '🔎',
-        text: 'Tap on the colored countries for details.'
-    },
-
     infoBtn: 'How does it work?',
 
     modal: {
@@ -187,7 +177,7 @@ const dictionary = {
         },
         scoreboard: {
             title: '🏆 Scoreboard',
-            toggleBtn: '🏆 Full Scoreboard'
+            toggleBtn: '🏆 Scoreboard'
         },
         updated: 'Updated'
     },
