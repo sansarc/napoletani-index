@@ -3,379 +3,379 @@
     "name": "Londra",
     "country_code": "GBR",
     "country_name": "Regno Unito",
-    "index": 28.7,
-    "trend": "down",
-    "trend_diff": -16.7,
-    "last_updated": "2026-09-21"
+    "index": 41.9,
+    "trend": "up",
+    "trend_diff": 13.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Parigi",
     "country_code": "FRA",
     "country_name": "Francia",
-    "index": 60.7,
-    "trend": "up",
-    "trend_diff": 21.1,
-    "last_updated": "2026-09-21"
+    "index": 42.5,
+    "trend": "down",
+    "trend_diff": -18.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Barcellona",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 27.4,
+    "index": 25.5,
     "trend": "down",
-    "trend_diff": -8.6,
-    "last_updated": "2026-09-21"
+    "trend_diff": -1.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "New York",
     "country_code": "USA",
     "country_name": "Stati Uniti",
-    "index": 47.5,
-    "trend": "up",
-    "trend_diff": 24.8,
-    "last_updated": "2026-09-21"
+    "index": 26.0,
+    "trend": "down",
+    "trend_diff": -21.5,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Dubai",
     "country_code": "ARE",
     "country_name": "Emirati Arabi Uniti",
-    "index": 12.3,
+    "index": 15.7,
     "trend": "up",
-    "trend_diff": 5.4,
-    "last_updated": "2026-09-21"
+    "trend_diff": 3.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Sharm",
     "country_code": "EGY",
     "country_name": "Egitto",
-    "index": 28.0,
-    "trend": "down",
-    "trend_diff": -8.8,
-    "last_updated": "2026-09-21"
+    "index": 36.4,
+    "trend": "up",
+    "trend_diff": 8.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Mykonos",
     "country_code": "GRC",
     "country_name": "Grecia",
-    "index": 19.9,
-    "trend": "up",
-    "trend_diff": 3.9,
-    "last_updated": "2026-09-21"
+    "index": 17.7,
+    "trend": "down",
+    "trend_diff": -2.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Tokyo",
     "country_code": "JPN",
     "country_name": "Giappone",
-    "index": 4.0,
-    "trend": "down",
-    "trend_diff": -1.6,
-    "last_updated": "2026-09-21"
+    "index": 12.6,
+    "trend": "up",
+    "trend_diff": 8.6,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Corfu",
     "country_code": "GRC",
     "country_name": "Grecia",
-    "index": 4.1,
+    "index": 9.0,
     "trend": "up",
-    "trend_diff": 3.9,
-    "last_updated": "2026-09-21"
+    "trend_diff": 4.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Ibiza",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 57.6,
-    "trend": "down",
-    "trend_diff": -28.6,
-    "last_updated": "2026-09-21"
+    "index": 62.0,
+    "trend": "up",
+    "trend_diff": 4.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Santorini",
     "country_code": "GRC",
     "country_name": "Grecia",
-    "index": 14.2,
+    "index": 16.3,
     "trend": "up",
-    "trend_diff": 5.4,
-    "last_updated": "2026-09-21"
+    "trend_diff": 2.1,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Malta",
     "country_code": "MLT",
     "country_name": "Malta",
-    "index": 14.6,
-    "trend": "stable",
-    "trend_diff": 0.2,
-    "last_updated": "2026-09-21"
+    "index": 8.6,
+    "trend": "down",
+    "trend_diff": -6.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Tenerife",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 11.8,
+    "index": 5.9,
     "trend": "down",
-    "trend_diff": -2.6,
-    "last_updated": "2026-09-21"
+    "trend_diff": -5.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Istanbul",
     "country_code": "TUR",
     "country_name": "Turchia",
-    "index": 16.2,
-    "trend": "up",
-    "trend_diff": 4.8,
-    "last_updated": "2026-09-21"
+    "index": 8.3,
+    "trend": "down",
+    "trend_diff": -7.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Maldive",
     "country_code": "MDV",
     "country_name": "Maldive",
-    "index": 7.3,
-    "trend": "up",
-    "trend_diff": 1.3,
-    "last_updated": "2026-09-21"
+    "index": 3.1,
+    "trend": "down",
+    "trend_diff": -4.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Berlino",
     "country_code": "DEU",
     "country_name": "Germania",
-    "index": 1.7,
-    "trend": "down",
-    "trend_diff": -2.1,
-    "last_updated": "2026-09-21"
+    "index": 2.1,
+    "trend": "stable",
+    "trend_diff": 0.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Copenaghen",
     "country_code": "DNK",
     "country_name": "Danimarca",
-    "index": 2.6,
+    "index": 2.7,
     "trend": "stable",
-    "trend_diff": -0.2,
-    "last_updated": "2026-09-21"
+    "trend_diff": 0.1,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Stoccolma",
     "country_code": "SWE",
     "country_name": "Svezia",
-    "index": 4.4,
-    "trend": "up",
-    "trend_diff": 3.7,
-    "last_updated": "2026-09-21"
+    "index": 0.0,
+    "trend": "down",
+    "trend_diff": -4.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Praga",
     "country_code": "CZE",
     "country_name": "Repubblica Ceca",
-    "index": 13.9,
-    "trend": "up",
-    "trend_diff": 1.8,
-    "last_updated": "2026-09-21"
+    "index": 11.7,
+    "trend": "down",
+    "trend_diff": -2.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Amsterdam",
     "country_code": "NLD",
     "country_name": "Paesi Bassi",
-    "index": 38.7,
-    "trend": "down",
-    "trend_diff": -13.8,
-    "last_updated": "2026-09-21"
+    "index": 47.9,
+    "trend": "up",
+    "trend_diff": 9.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Vienna",
     "country_code": "AUT",
     "country_name": "Austria",
-    "index": 38.0,
-    "trend": "up",
-    "trend_diff": 6.5,
-    "last_updated": "2026-09-21"
+    "index": 34.7,
+    "trend": "down",
+    "trend_diff": -3.3,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Lisbona",
     "country_code": "PRT",
     "country_name": "Portogallo",
-    "index": 7.7,
+    "index": 3.1,
     "trend": "down",
-    "trend_diff": -5.7,
-    "last_updated": "2026-09-21"
+    "trend_diff": -4.6,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Valencia",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 5.6,
-    "trend": "down",
-    "trend_diff": -2.7,
-    "last_updated": "2026-09-21"
+    "index": 4.7,
+    "trend": "stable",
+    "trend_diff": -0.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Madrid",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 12.7,
-    "trend": "down",
-    "trend_diff": -8.9,
-    "last_updated": "2026-09-21"
+    "index": 21.5,
+    "trend": "up",
+    "trend_diff": 8.8,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Dublino",
     "country_code": "IRL",
     "country_name": "Irlanda",
-    "index": 1.9,
-    "trend": "stable",
-    "trend_diff": -0.2,
-    "last_updated": "2026-09-21"
+    "index": 8.9,
+    "trend": "up",
+    "trend_diff": 7.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Bruxelles",
     "country_code": "BEL",
     "country_name": "Belgio",
-    "index": 3.9,
+    "index": 2.7,
     "trend": "down",
-    "trend_diff": -2.6,
-    "last_updated": "2026-09-21"
+    "trend_diff": -1.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Marrakech",
     "country_code": "MAR",
     "country_name": "Marocco",
-    "index": 6.5,
-    "trend": "stable",
-    "trend_diff": 0.9,
-    "last_updated": "2026-09-21"
+    "index": 3.7,
+    "trend": "down",
+    "trend_diff": -2.8,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Budapest",
     "country_code": "HUN",
     "country_name": "Ungheria",
-    "index": 25.4,
-    "trend": "up",
-    "trend_diff": 1.9,
-    "last_updated": "2026-09-21"
+    "index": 22.6,
+    "trend": "down",
+    "trend_diff": -2.8,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Bucarest",
     "country_code": "ROU",
     "country_name": "Romania",
-    "index": 4.9,
-    "trend": "down",
-    "trend_diff": -10.6,
-    "last_updated": "2026-09-21"
+    "index": 4.4,
+    "trend": "stable",
+    "trend_diff": -0.5,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Varsavia",
     "country_code": "POL",
     "country_name": "Polonia",
-    "index": 2.9,
+    "index": 1.8,
     "trend": "down",
-    "trend_diff": -3.1,
-    "last_updated": "2026-09-21"
+    "trend_diff": -1.1,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Cracovia",
     "country_code": "POL",
     "country_name": "Polonia",
-    "index": 4.1,
+    "index": 3.6,
     "trend": "stable",
-    "trend_diff": -0.6,
-    "last_updated": "2026-09-21"
+    "trend_diff": -0.5,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Marsiglia",
     "country_code": "FRA",
     "country_name": "Francia",
-    "index": 3.4,
-    "trend": "up",
-    "trend_diff": 3.4,
-    "last_updated": "2026-09-21"
+    "index": 0.0,
+    "trend": "down",
+    "trend_diff": -3.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Edimburgo",
     "country_code": "GBR",
     "country_name": "Regno Unito",
-    "index": 3.8,
-    "trend": "down",
-    "trend_diff": -4.4,
-    "last_updated": "2026-09-21"
+    "index": 3.5,
+    "trend": "stable",
+    "trend_diff": -0.3,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "California",
     "country_code": "USA",
     "country_name": "Stati Uniti",
-    "index": 2.9,
-    "trend": "down",
-    "trend_diff": -8.1,
-    "last_updated": "2026-09-21"
+    "index": 8.5,
+    "trend": "up",
+    "trend_diff": 5.6,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Miami",
     "country_code": "USA",
     "country_name": "Stati Uniti",
-    "index": 8.5,
-    "trend": "stable",
-    "trend_diff": -0.3,
-    "last_updated": "2026-09-21"
+    "index": 4.1,
+    "trend": "down",
+    "trend_diff": -4.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Helsinki",
     "country_code": "FIN",
     "country_name": "Finlandia",
-    "index": 0.2,
-    "trend": "stable",
-    "trend_diff": 0.2,
-    "last_updated": "2026-09-21"
+    "index": 1.4,
+    "trend": "up",
+    "trend_diff": 1.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Oslo",
     "country_code": "NOR",
     "country_name": "Norvegia",
-    "index": 5.0,
-    "trend": "up",
-    "trend_diff": 4.5,
-    "last_updated": "2026-09-21"
+    "index": 4.0,
+    "trend": "stable",
+    "trend_diff": -1.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Amburgo",
     "country_code": "DEU",
     "country_name": "Germania",
-    "index": 3.4,
-    "trend": "stable",
-    "trend_diff": -0.2,
-    "last_updated": "2026-09-21"
+    "index": 0.2,
+    "trend": "down",
+    "trend_diff": -3.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Monaco di Baviera",
     "country_code": "DEU",
     "country_name": "Germania",
-    "index": 1.4,
-    "trend": "down",
-    "trend_diff": -4.3,
-    "last_updated": "2026-09-21"
+    "index": 6.5,
+    "trend": "up",
+    "trend_diff": 5.1,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Bangkok",
     "country_code": "THA",
     "country_name": "Thailandia",
-    "index": 1.4,
-    "trend": "down",
-    "trend_diff": -1.4,
-    "last_updated": "2026-09-21"
+    "index": 3.9,
+    "trend": "up",
+    "trend_diff": 2.5,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Los Angeles",
     "country_code": "USA",
     "country_name": "Stati Uniti",
-    "index": 0.8,
-    "trend": "stable",
-    "trend_diff": -0.8,
-    "last_updated": "2026-09-21"
+    "index": 2.8,
+    "trend": "up",
+    "trend_diff": 2.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "San Francisco",
     "country_code": "USA",
     "country_name": "Stati Uniti",
-    "index": 0.5,
-    "trend": "stable",
-    "trend_diff": 0.5,
-    "last_updated": "2026-09-21"
+    "index": 2.4,
+    "trend": "up",
+    "trend_diff": 1.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "L'Avana",
@@ -384,7 +384,7 @@
     "index": 0.0,
     "trend": "stable",
     "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Seoul",
@@ -393,43 +393,43 @@
     "index": 0.0,
     "trend": "stable",
     "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Kyoto",
     "country_code": "JPN",
     "country_name": "Giappone",
-    "index": 1.1,
+    "index": 0.6,
     "trend": "stable",
-    "trend_diff": 0.5,
-    "last_updated": "2026-09-21"
+    "trend_diff": -0.5,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Osaka",
     "country_code": "JPN",
     "country_name": "Giappone",
-    "index": 0.7,
-    "trend": "down",
-    "trend_diff": -7.3,
-    "last_updated": "2026-09-21"
+    "index": 4.7,
+    "trend": "up",
+    "trend_diff": 4.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Sydney",
     "country_code": "AUS",
     "country_name": "Australia",
-    "index": 0.0,
+    "index": 0.2,
     "trend": "stable",
-    "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "trend_diff": 0.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Melbourne",
     "country_code": "AUS",
     "country_name": "Australia",
-    "index": 0.2,
-    "trend": "down",
-    "trend_diff": -3.5,
-    "last_updated": "2026-09-21"
+    "index": 3.0,
+    "trend": "up",
+    "trend_diff": 2.8,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Reykjavik",
@@ -438,16 +438,16 @@
     "index": 0.0,
     "trend": "stable",
     "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Siviglia",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 8.1,
+    "index": 4.1,
     "trend": "down",
-    "trend_diff": -4.5,
-    "last_updated": "2026-09-21"
+    "trend_diff": -4.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Zagabria",
@@ -456,61 +456,61 @@
     "index": 0.0,
     "trend": "stable",
     "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Cairo",
     "country_code": "EGY",
     "country_name": "Egitto",
-    "index": 2.4,
+    "index": 1.6,
     "trend": "stable",
-    "trend_diff": -0.2,
-    "last_updated": "2026-09-21"
+    "trend_diff": -0.8,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Atene",
     "country_code": "GRC",
     "country_name": "Grecia",
-    "index": 5.7,
-    "trend": "down",
-    "trend_diff": -3.0,
-    "last_updated": "2026-09-21"
+    "index": 5.0,
+    "trend": "stable",
+    "trend_diff": -0.7,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Sofia",
     "country_code": "BGR",
     "country_name": "Bulgaria",
-    "index": 7.7,
-    "trend": "stable",
-    "trend_diff": 0.6,
-    "last_updated": "2026-09-21"
+    "index": 2.8,
+    "trend": "down",
+    "trend_diff": -4.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Belgrado",
     "country_code": "SRB",
     "country_name": "Serbia",
-    "index": 0.0,
-    "trend": "down",
-    "trend_diff": -4.0,
-    "last_updated": "2026-09-21"
+    "index": 4.6,
+    "trend": "up",
+    "trend_diff": 4.6,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Lubiana",
     "country_code": "SVN",
     "country_name": "Slovenia",
-    "index": 3.0,
-    "trend": "up",
-    "trend_diff": 3.0,
-    "last_updated": "2026-09-21"
+    "index": 0.0,
+    "trend": "down",
+    "trend_diff": -3.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Bratislava",
     "country_code": "SVK",
     "country_name": "Slovacchia",
-    "index": 5.6,
-    "trend": "up",
-    "trend_diff": 3.0,
-    "last_updated": "2026-09-21"
+    "index": 1.5,
+    "trend": "down",
+    "trend_diff": -4.1,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Tallinn",
@@ -519,25 +519,25 @@
     "index": 0.0,
     "trend": "stable",
     "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Riga",
     "country_code": "LVA",
     "country_name": "Lettonia",
-    "index": 0.0,
-    "trend": "down",
-    "trend_diff": -4.0,
-    "last_updated": "2026-09-21"
+    "index": 0.2,
+    "trend": "stable",
+    "trend_diff": 0.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Vilnius",
     "country_code": "LTU",
     "country_name": "Lituania",
     "index": 0.0,
-    "trend": "down",
-    "trend_diff": -4.0,
-    "last_updated": "2026-09-21"
+    "trend": "stable",
+    "trend_diff": 0.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Lussemburgo",
@@ -545,17 +545,17 @@
     "country_name": "Lussemburgo",
     "index": 0.2,
     "trend": "stable",
-    "trend_diff": 0.2,
-    "last_updated": "2026-09-21"
+    "trend_diff": 0.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "San Marino",
     "country_code": "SMR",
     "country_name": "San Marino",
-    "index": 0.0,
-    "trend": "down",
-    "trend_diff": -4.9,
-    "last_updated": "2026-09-21"
+    "index": 0.2,
+    "trend": "stable",
+    "trend_diff": 0.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Berna",
@@ -564,177 +564,177 @@
     "index": 0.0,
     "trend": "stable",
     "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Zurigo",
     "country_code": "CHE",
     "country_name": "Svizzera",
-    "index": 2.2,
+    "index": 1.3,
     "trend": "stable",
-    "trend_diff": 0.2,
-    "last_updated": "2026-09-21"
+    "trend_diff": -0.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Ginevra",
     "country_code": "CHE",
     "country_name": "Svizzera",
-    "index": 3.7,
-    "trend": "stable",
-    "trend_diff": -0.4,
-    "last_updated": "2026-09-21"
+    "index": 1.5,
+    "trend": "down",
+    "trend_diff": -2.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Nizza",
     "country_code": "FRA",
     "country_name": "Francia",
-    "index": 2.5,
-    "trend": "down",
-    "trend_diff": -8.9,
-    "last_updated": "2026-09-21"
+    "index": 5.0,
+    "trend": "up",
+    "trend_diff": 2.5,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Cannes",
     "country_code": "FRA",
     "country_name": "Francia",
-    "index": 2.6,
-    "trend": "stable",
-    "trend_diff": 1.0,
-    "last_updated": "2026-09-21"
+    "index": 0.0,
+    "trend": "down",
+    "trend_diff": -2.6,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Bordeaux",
     "country_code": "FRA",
     "country_name": "Francia",
-    "index": 0.0,
+    "index": 0.7,
     "trend": "stable",
-    "trend_diff": -0.4,
-    "last_updated": "2026-09-21"
+    "trend_diff": 0.7,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Lione",
     "country_code": "FRA",
     "country_name": "Francia",
-    "index": 3.3,
-    "trend": "up",
-    "trend_diff": 3.0,
-    "last_updated": "2026-09-21"
+    "index": 0.0,
+    "trend": "down",
+    "trend_diff": -3.3,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Porto",
     "country_code": "PRT",
     "country_name": "Portogallo",
-    "index": 334.5,
+    "index": 281.6,
     "trend": "down",
-    "trend_diff": -6.8,
-    "last_updated": "2026-09-21"
+    "trend_diff": -52.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Faro",
     "country_code": "PRT",
     "country_name": "Portogallo",
-    "index": 5.4,
-    "trend": "up",
-    "trend_diff": 2.1,
-    "last_updated": "2026-09-21"
+    "index": 0.5,
+    "trend": "down",
+    "trend_diff": -4.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Bilbao",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 6.0,
-    "trend": "up",
-    "trend_diff": 1.3,
-    "last_updated": "2026-09-21"
+    "index": 1.1,
+    "trend": "down",
+    "trend_diff": -4.9,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Palma di Maiorca",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 0.4,
-    "trend": "stable",
-    "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "index": 3.2,
+    "trend": "up",
+    "trend_diff": 2.8,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Alicante",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 5.2,
-    "trend": "down",
-    "trend_diff": -3.9,
-    "last_updated": "2026-09-21"
+    "index": 4.7,
+    "trend": "stable",
+    "trend_diff": -0.5,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Malaga",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 3.0,
-    "trend": "stable",
-    "trend_diff": -0.4,
-    "last_updated": "2026-09-21"
+    "index": 11.6,
+    "trend": "up",
+    "trend_diff": 8.6,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Gran Canaria",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 4.3,
-    "trend": "up",
-    "trend_diff": 4.1,
-    "last_updated": "2026-09-21"
+    "index": 0.2,
+    "trend": "down",
+    "trend_diff": -4.1,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Fuerteventura",
     "country_code": "ESP",
     "country_name": "Spagna",
-    "index": 6.6,
-    "trend": "up",
-    "trend_diff": 6.0,
-    "last_updated": "2026-09-21"
+    "index": 3.4,
+    "trend": "down",
+    "trend_diff": -3.2,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Creta",
     "country_code": "GRC",
     "country_name": "Grecia",
-    "index": 4.1,
-    "trend": "up",
-    "trend_diff": 3.6,
-    "last_updated": "2026-09-21"
+    "index": 3.4,
+    "trend": "stable",
+    "trend_diff": -0.7,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Rodi",
     "country_code": "GRC",
     "country_name": "Grecia",
-    "index": 4.4,
-    "trend": "down",
-    "trend_diff": -1.8,
-    "last_updated": "2026-09-21"
+    "index": 7.0,
+    "trend": "up",
+    "trend_diff": 2.6,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Spalato",
     "country_code": "HRV",
     "country_name": "Croazia",
-    "index": 7.7,
-    "trend": "up",
-    "trend_diff": 7.7,
-    "last_updated": "2026-09-21"
+    "index": 0.3,
+    "trend": "down",
+    "trend_diff": -7.4,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Dubrovnik",
     "country_code": "HRV",
     "country_name": "Croazia",
-    "index": 6.0,
-    "trend": "up",
-    "trend_diff": 6.0,
-    "last_updated": "2026-09-21"
+    "index": 0.0,
+    "trend": "down",
+    "trend_diff": -6.0,
+    "last_updated": "2026-09-28"
   },
   {
     "name": "Sarajevo",
     "country_code": "BIH",
     "country_name": "Bosnia ed Erzegovina",
-    "index": 0.0,
-    "trend": "stable",
-    "trend_diff": 0.0,
-    "last_updated": "2026-09-21"
+    "index": 3.6,
+    "trend": "up",
+    "trend_diff": 3.6,
+    "last_updated": "2026-09-28"
   }
 ]
